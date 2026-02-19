@@ -14,7 +14,7 @@ export default defineConfig({
     starlight({
       title: 'Gitty Docs',
       logo: {
-        src: './src/assets/logo.svg',
+        src: './src/assets/icon.png',
         alt: 'gitty — Git, handcrafted for macOS',
         href: '/gitty-docs/',
       },
