@@ -8,21 +8,6 @@ import SectionHeader from '../components/SectionHeader.astro';
 import ShortcutRow from '../components/ShortcutRow.astro';
 const base = import.meta.env.BASE_URL;
 
-// Fetch latest release info at build time
-let releaseVersion = '';
-let releaseDate = '';
-let releaseUrl = 'https://github.com/philippgrimm/gitty/releases/latest';
-try {
-  const res = await fetch('https://api.github.com/repos/philippgrimm/gitty/releases/latest');
-  if (res.ok) {
-    const data = await res.json();
-    releaseVersion = data.tag_name || '';
-    releaseDate = data.published_at ? new Date(data.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-    releaseUrl = data.html_url || releaseUrl;
-  }
-} catch (e) {
-  // Graceful fallback — no release info available
-}
 ---
 
 <MarketingLayout title="gitty — A macOS Git Client with Soul">
@@ -369,24 +354,8 @@ try {
         subtitle="One app. Every repo. Beautifully native on macOS."
       />
 
-      {releaseVersion ? (
-        <div class="footer-release-meta">
-          <span class="footer-version-badge">{releaseVersion}</span>
-          {releaseDate && (
-            <span class="footer-release-date">Released {releaseDate}</span>
-          )}
-        </div>
-      ) : null}
-
       <div class="footer-cta">
-        {releaseVersion ? (
-          <RetroButton href={releaseUrl} size="lg">⬇ Download gitty for macOS</RetroButton>
-        ) : (
-          <div class="footer-coming-soon">
-            <p class="footer-coming-text">Not yet released —</p>
-            <RetroButton href="https://github.com/philippgrimm/gitty" variant="ghost" size="md">★ Star us on GitHub</RetroButton>
-          </div>
-        )}
+        <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="lg">⬇ Download gitty for macOS</RetroButton>
       </div>
 
       <nav class="footer-links" aria-label="Footer links">
