@@ -26,9 +26,12 @@ try {
 ---
 
 <MarketingLayout title="gitty — A macOS Git Client with Soul">
-  <main>
+  <main id="main-content">
     <section id="hero" class="hero-section">
       <div class="hero-inner">
+
+        <!-- Visually hidden h1 — page title for screen readers (logo is an <img>) -->
+        <h1 class="sr-only">gitty — A macOS Git Client with Soul</h1>
 
         <!-- Decorative catalog number — 90s boxed software authenticity -->
         <p class="hero-catalog">v 1.0 — macOS 14+ — GITTY-001</p>
@@ -60,7 +63,7 @@ try {
         <!-- App preview in CRT bezel -->
         <div class="hero-screenshot-wrap">
           <Screenshot
-            src={base + 'screenshots/screenshot-01-staging.png'}
+            src={base + 'screenshots/screenshot-01-staging.svg'}
             alt="gitty staging panel showing mixed file states"
           />
         </div>
@@ -249,6 +252,57 @@ try {
               <rect x="2" y="7" width="2" height="13" opacity="0.6" />
             </svg>
           </FeatureCard>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="screenshots-section">
+      <div class="py-16 px-4 max-w-6xl mx-auto">
+        <SectionHeader
+          title="IN ACTION"
+          subtitle="See gitty's retro-futuristic interface in action."
+        />
+        <div class="screenshots-grid">
+          <Screenshot
+            src={base + 'screenshots/screenshot-01-staging.svg'}
+            alt="gitty staging panel showing file status groups"
+            caption="Staging Panel"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-02-diff-unified.svg'}
+            alt="Unified diff view with syntax highlighting"
+            caption="Unified Diff"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-03-diff-split.svg'}
+            alt="Split diff view comparing before and after"
+            caption="Split Diff"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-05-commit.svg'}
+            alt="Commit panel with conventional commit template"
+            caption="Smart Commits"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-06-history.svg'}
+            alt="Commit history with visual graph lanes"
+            caption="History Graph"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-07-command-palette.svg'}
+            alt="Command palette with fuzzy search"
+            caption="Command Palette"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-08-rebase.svg'}
+            alt="Interactive rebase with drag-and-drop"
+            caption="Interactive Rebase"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-09-blame.svg'}
+            alt="Git blame view with line-by-line authorship"
+            caption="Git Blame"
+          />
         </div>
       </div>
     </section>
@@ -451,6 +505,26 @@ try {
 
   @media (min-width: 1024px) {
     .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Screenshots Gallery Section ────────────────────────── */
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .screenshots-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .screenshots-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
