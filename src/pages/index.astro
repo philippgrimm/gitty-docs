@@ -46,7 +46,7 @@ try {
 
         <!-- Subtitle copy -->
         <p class="hero-subtitle">
-          A macOS-native Git client with a retro soul.<br />
+          A native PHP Git client with a retro soul.<br />
           Stage, commit, branch, and sync — all from a beautifully crafted desktop app.
         </p>
 
@@ -63,7 +63,7 @@ try {
         <!-- App preview in CRT bezel -->
         <div class="hero-screenshot-wrap">
           <Screenshot
-            src={base + 'screenshots/screenshot-01-staging.svg'}
+            src={base + 'screenshots/screenshot-01-staging.png'}
             alt="gitty staging panel showing mixed file states"
           />
         </div>
@@ -264,44 +264,54 @@ try {
         />
         <div class="screenshots-grid">
           <Screenshot
-            src={base + 'screenshots/screenshot-01-staging.svg'}
+            src={base + 'screenshots/screenshot-01-staging.png'}
             alt="gitty staging panel showing file status groups"
             caption="Staging Panel"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-02-diff-unified.svg'}
+            src={base + 'screenshots/screenshot-02-diff-unified.png'}
             alt="Unified diff view with syntax highlighting"
             caption="Unified Diff"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-03-diff-split.svg'}
+            src={base + 'screenshots/screenshot-03-diff-split.png'}
             alt="Split diff view comparing before and after"
             caption="Split Diff"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-05-commit.svg'}
-            alt="Commit panel with conventional commit template"
+            src={base + 'screenshots/screenshot-04-commit.png'}
+            alt="Commit panel with conventional commit template dropdown"
             caption="Smart Commits"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-06-history.svg'}
+            src={base + 'screenshots/screenshot-05-branches.png'}
+            alt="Branch manager dropdown showing local branches"
+            caption="Branch Manager"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-06-history.png'}
             alt="Commit history with visual graph lanes"
             caption="History Graph"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-07-command-palette.svg'}
+            src={base + 'screenshots/screenshot-07-command-palette.png'}
             alt="Command palette with fuzzy search"
             caption="Command Palette"
           />
           <Screenshot
-            src={base + 'screenshots/screenshot-08-rebase.svg'}
-            alt="Interactive rebase with drag-and-drop"
-            caption="Interactive Rebase"
-          />
-          <Screenshot
-            src={base + 'screenshots/screenshot-09-blame.svg'}
+            src={base + 'screenshots/screenshot-08-blame.png'}
             alt="Git blame view with line-by-line authorship"
             caption="Git Blame"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-09-conflict.png'}
+            alt="Conflict resolution view during rebase"
+            caption="Conflict Resolution"
+          />
+          <Screenshot
+            src={base + 'screenshots/screenshot-10-settings.png'}
+            alt="Settings modal with configuration options"
+            caption="Settings"
           />
         </div>
       </div>
@@ -656,5 +666,23 @@ try {
     .footer-section {
       padding: 6rem 2rem 5rem;
     }
+  }
+
+  /* ── Dark Mode Overrides ──────────────────────────────── */
+  :global(html[data-theme='dark']) .hero-section::before {
+    background-image:
+      radial-gradient(circle, rgba(124, 124, 240, 0.12) 1px, transparent 1px);
+  }
+
+  :global(html[data-theme='dark']) .hero-rule {
+    border-top-color: rgba(124, 124, 240, 0.3);
+  }
+
+  :global(html[data-theme='dark']) .footer-version-badge {
+    border-color: rgba(124, 124, 240, 0.35);
+  }
+
+  :global(html[data-theme='dark']) .footer-copyright {
+    border-top-color: rgba(124, 124, 240, 0.2);
   }
 </style>

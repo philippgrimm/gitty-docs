@@ -23,8 +23,8 @@
  *   <Logo size="lg" showTagline />
  */
 
-// Import the SVG as a URL (Vite processes src/assets/* and returns a hashed public URL)
-import logoSrc from '../assets/logo.svg?url';
+// Import the actual gitty app icon (CRT monitor with "> gitty" prompt)
+import logoSrc from '../assets/icon.png?url';
 
 interface Props {
   /** Preset size — controls rendered width while preserving aspect ratio */
@@ -41,16 +41,16 @@ const {
   showTagline = false,
 } = Astro.props;
 
-/** Logo natural aspect ratio: 304 × 80 → 3.8 */
+/** App icon is 1024×1024 (square) */
 const widthMap: Record<NonNullable<Props['size']>, number> = {
-  sm: 120,
-  md: 200,
-  lg: 320,
-  xl: 500,
+  sm: 48,
+  md: 80,
+  lg: 120,
+  xl: 180,
 };
 
 const width = widthMap[size];
-const height = Math.round(width / 3.8);
+const height = width;
 ---
 
 <div class:list={['gitty-logo', `gitty-logo--${size}`, className]}>
@@ -81,9 +81,6 @@ const height = Math.round(width / 3.8);
     display: block;
     max-width: 100%;
     height: auto;
-    /* crisp-edges preserves the pixel-art look when scaled */
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
   }
 
   .gitty-logo__tagline {
@@ -92,7 +89,7 @@ const height = Math.round(width / 3.8);
     font-size: 0.625rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #808080;
+    color: var(--text-tertiary);
     line-height: 1;
     padding-left: 0.125rem;
   }

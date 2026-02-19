@@ -70,6 +70,87 @@
     --radius-sm: 4px;
     --radius-md: 6px;
     --radius-lg: 8px;
+
+    /* Win95 Bevel System */
+    --bevel-highlight: #ffffff;
+    --bevel-shadow: #808080;
+    --bevel-inner-highlight: #dfdfdf;
+    --bevel-inner-shadow: #404040;
+}
+
+/* ============================================================
+   Dark Mode — Catppuccin Mocha
+   ============================================================ */
+html[data-theme='dark'] {
+    /* Surface Colors */
+    --surface-0: #1e1e2e;
+    --surface-1: #313244;
+    --surface-2: #45475a;
+    --surface-3: #585b70;
+
+    /* Border Colors */
+    --border-default: #45475a;
+    --border-subtle: #313244;
+    --border-strong: #585b70;
+
+    /* Text Colors */
+    --text-primary: #cdd6f4;
+    --text-secondary: #bac2de;
+    --text-tertiary: #a6adc8;
+
+    /* Accent Colors */
+    --accent: #7c7cf0;
+    --accent-muted: rgba(124, 124, 240, 0.15);
+    --accent-text: #9595f5;
+
+    /* Semantic Colors */
+    --color-green: #a6e3a1;
+    --color-red: #f38ba8;
+    --color-yellow: #f9e2af;
+    --color-peach: #fab387;
+    --color-blue: #89b4fa;
+    --color-mauve: #cba6f7;
+    --color-teal: #94e2d5;
+    --color-sky: #89dceb;
+    --color-lavender: #b4befe;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+    /* Win95 Bevel System */
+    --bevel-highlight: #585b70;
+    --bevel-shadow: #11111b;
+    --bevel-inner-highlight: #45475a;
+    --bevel-inner-shadow: #181825;
+}
+
+html[data-theme='dark'] .crt-scanlines::after {
+    background: repeating-linear-gradient(
+        0deg, rgba(255, 255, 255, 0.03) 0px,
+        transparent 1px, transparent 3px,
+        rgba(255, 255, 255, 0.03) 4px
+    );
+}
+
+html[data-theme='dark'] .retro-paper {
+    background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 24px,
+        rgba(100, 105, 130, 0.15) 24px, rgba(100, 105, 130, 0.15) 25px
+    );
+}
+
+html[data-theme='dark'] .terminal-header {
+    background: linear-gradient(90deg, rgba(124, 124, 240, 0.08), transparent 60%);
+}
+
+html[data-theme='dark'] .retro-input {
+    background: #313244;
+}
+
+html[data-theme='dark'] .retro-input:focus {
+    border-color: #7c7cf0 #45475a #45475a #7c7cf0;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(124, 124, 240, 0.2);
 }
 
 /* ============================================================
@@ -88,19 +169,19 @@
 /* Win95-style Beveled Buttons */
 .btn-bevel {
     border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
-    box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #404040;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
+    box-shadow: inset 1px 1px 0px var(--bevel-inner-highlight), inset -1px -1px 0px var(--bevel-inner-shadow);
     transition: all 0.1s ease;
 }
 .btn-bevel:active {
-    border-color: #808080 #ffffff #ffffff #808080;
-    box-shadow: inset 1px 1px 0px #404040, inset -1px -1px 0px #dfdfdf;
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
+    box-shadow: inset 1px 1px 0px var(--bevel-inner-shadow), inset -1px -1px 0px var(--bevel-inner-highlight);
 }
 
 /* Panel Inset */
 .panel-inset {
     border: 2px solid;
-    border-color: #C8C3B8 #ffffff #ffffff #C8C3B8;
+    border-color: var(--border-default) var(--bevel-highlight) var(--bevel-highlight) var(--border-default);
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -130,7 +211,7 @@
 /* Terminal Block Headers */
 .terminal-header {
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 2.5rem;
     background: linear-gradient(90deg, rgba(64, 64, 176, 0.06), transparent 60%);
 }
 .terminal-header::before {
@@ -152,10 +233,10 @@
 /* Retro Input Fields */
 .retro-input {
     border: 2px solid;
-    border-color: #808080 #ffffff #ffffff #808080;
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
     caret-color: var(--accent);
-    background: #F8F6F2;
+    background: var(--surface-0);
 }
 .retro-input:focus {
     border-color: #4040B0 #a0a0e0 #a0a0e0 #4040B0;
