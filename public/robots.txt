@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://philippgrimm.github.io/gitty-docs/sitemap-index.xml

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800">
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4CFC6"/>
+      <stop offset="100%" stop-color="#DED9D0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="800" fill="#E8E5DF"/>
+  <!-- Title bar -->
+  <rect width="1280" height="40" fill="url(#chrome)"/>
+  <line x1="0" y1="0" x2="1280" y2="0" stroke="#ffffff" stroke-width="2"/>
+  <line x1="0" y1="0" x2="0" y2="40" stroke="#ffffff" stroke-width="2"/>
+  <line x1="0" y1="39" x2="1280" y2="39" stroke="#808080" stroke-width="1"/>
+  <circle cx="20" cy="20" r="6" fill="#FF5F57"/>
+  <circle cx="40" cy="20" r="6" fill="#FEBC2E"/>
+  <circle cx="60" cy="20" r="6" fill="#28C840"/>
+  <text x="640" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#2C3040" font-weight="600">&gt; gitty — Settings</text>
+  <!-- Tab bar -->
+  <rect y="40" width="1280" height="36" fill="#DED9D0"/>
+  <line x1="0" y1="75" x2="1280" y2="75" stroke="#C8C3B8" stroke-width="1"/>
+  <rect x="8" y="43" width="110" height="30" rx="2" fill="#E8E5DF"/>
+  <rect x="8" y="43" width="110" height="3" fill="#4040B0"/>
+  <text x="63" y="63" text-anchor="middle" font-family="monospace" font-size="11" fill="#2C3040">Changes</text>
+  <!-- App background dimmed -->
+  <rect x="0" y="76" width="1280" height="700" fill="rgba(44,48,64,0.5)"/>
+  <!-- Settings modal -->
+  <rect x="200" y="100" width="880" height="600" fill="#DED9D0" rx="4"/>
+  <rect x="200" y="100" width="880" height="600" rx="4" stroke="#808080" stroke-width="1" fill="none"/>
+  <!-- Shadow -->
+  <rect x="204" y="106" width="880" height="600" fill="rgba(0,0,0,0.2)" rx="4"/>
+  <rect x="200" y="100" width="880" height="600" fill="#DED9D0" rx="4"/>
+  <rect x="200" y="100" width="880" height="600" rx="4" stroke="#808080" stroke-width="2" fill="none"/>
+  <!-- Modal title bar -->
+  <rect x="200" y="100" width="880" height="44" fill="url(#chrome)" rx="4"/>
+  <rect x="200" y="122" width="880" height="22" fill="url(#chrome)"/>
+  <line x1="200" y1="143" x2="1080" y2="143" stroke="#C8C3B8" stroke-width="1"/>
+  <text x="640" y="127" text-anchor="middle" font-family="monospace" font-size="13" fill="#2C3040" font-weight="700">Settings</text>
+  <rect x="1050" y="108" width="22" height="22" fill="#D4CFC6" rx="1" stroke="#808080" stroke-width="1"/>
+  <text x="1061" y="123" text-anchor="middle" font-family="monospace" font-size="12" fill="#2C3040">×</text>
+  <!-- Settings sidebar -->
+  <rect x="200" y="144" width="200" height="556" fill="#D4CFC6" rx="0"/>
+  <rect x="200" y="144" width="200" height="556" fill="#D4CFC6"/>
+  <rect x="395" y="650" width="5" height="56" fill="#D4CFC6"/>
+  <line x1="400" y1="144" x2="400" y2="700" stroke="#C8C3B8" stroke-width="1"/>
+  <!-- Nav items -->
+  <rect x="200" y="144" width="200" height="44" fill="#4040B0"/>
+  <text x="228" y="170" font-family="monospace" font-size="12" fill="#ffffff" font-weight="600">⚙ General</text>
+  <rect x="200" y="188" width="200" height="44" fill="none"/>
+  <text x="228" y="214" font-family="monospace" font-size="12" fill="#4A4E5E">🎨 Appearance</text>
+  <rect x="200" y="232" width="200" height="44" fill="none"/>
+  <text x="228" y="258" font-family="monospace" font-size="12" fill="#4A4E5E">⌨ Keybindings</text>
+  <rect x="200" y="276" width="200" height="44" fill="none"/>
+  <text x="228" y="302" font-family="monospace" font-size="12" fill="#4A4E5E">🔗 Git Config</text>
+  <rect x="200" y="320" width="200" height="44" fill="none"/>
+  <text x="228" y="346" font-family="monospace" font-size="12" fill="#4A4E5E">🔔 Notifications</text>
+  <rect x="200" y="364" width="200" height="44" fill="none"/>
+  <text x="228" y="390" font-family="monospace" font-size="12" fill="#4A4E5E">🌐 Integrations</text>
+  <rect x="200" y="408" width="200" height="44" fill="none"/>
+  <text x="228" y="434" font-family="monospace" font-size="12" fill="#4A4E5E">ℹ About</text>
+  <!-- Settings content area -->
+  <rect x="401" y="144" width="679" height="556" fill="#E8E5DF"/>
+  <!-- General settings content -->
+  <text x="424" y="175" font-family="monospace" font-size="14" fill="#2C3040" font-weight="700">General</text>
+  <line x1="424" y1="182" x2="1058" y2="182" stroke="#C8C3B8" stroke-width="1"/>
+  <!-- Setting row: Default branch -->
+  <rect x="421" y="192" width="638" height="52" fill="#DED9D0" rx="2"/>
+  <text x="440" y="212" font-family="monospace" font-size="11" fill="#2C3040" font-weight="600">Default Branch Name</text>
+  <text x="440" y="230" font-family="monospace" font-size="10" fill="#686C7C">Used when initializing new repositories</text>
+  <rect x="840" y="198" width="200" height="28" fill="#E8E5DF" rx="2" stroke="#C8C3B8" stroke-width="1"/>
+  <text x="858" y="216" font-family="monospace" font-size="11" fill="#2C3040">main</text>
+  <!-- Setting row: Auto-fetch -->
+  <rect x="421" y="252" width="638" height="52" fill="#E8E5DF" rx="2"/>
+  <text x="440" y="272" font-family="monospace" font-size="11" fill="#2C3040" font-weight="600">Auto-Fetch Interval</text>
+  <text x="440" y="290" font-family="monospace" font-size="10" fill="#686C7C">Automatically fetch from remotes (0 = disabled)</text>
+  <rect x="840" y="258" width="200" height="28" fill="#DED9D0" rx="2" stroke="#C8C3B8" stroke-width="1"/>
+  <text x="858" y="276" font-family="monospace" font-size="11" fill="#2C3040">60 seconds</text>
+  <!-- Setting row: Confirm discard -->
+  <rect x="421" y="312" width="638" height="52" fill="#DED9D0" rx="2"/>
+  <text x="440" y="332" font-family="monospace" font-size="11" fill="#2C3040" font-weight="600">Confirm Discard Changes</text>
+  <text x="440" y="350" font-family="monospace" font-size="10" fill="#686C7C">Show confirmation dialog before discarding</text>
+  <rect x="840" y="322" width="48" height="24" fill="#4040B0" rx="12"/>
+  <circle cx="876" cy="334" r="9" fill="#ffffff"/>
+  <!-- Setting row: Spell check -->
+  <rect x="421" y="372" width="638" height="52" fill="#E8E5DF" rx="2"/>
+  <text x="440" y="392" font-family="monospace" font-size="11" fill="#2C3040" font-weight="600">Spell Check in Commit Messages</text>
+  <text x="440" y="410" font-family="monospace" font-size="10" fill="#686C7C">Underline spelling errors in commit message editor</text>
+  <rect x="840" y="382" width="48" height="24" fill="#C8C3B8" rx="12"/>
+  <circle cx="852" cy="394" r="9" fill="#ffffff"/>
+  <!-- Setting row: Max history -->
+  <rect x="421" y="432" width="638" height="52" fill="#DED9D0" rx="2"/>
+  <text x="440" y="452" font-family="monospace" font-size="11" fill="#2C3040" font-weight="600">Max History Commits</text>
+  <text x="440" y="470" font-family="monospace" font-size="10" fill="#686C7C">Maximum commits to load in history view</text>
+  <rect x="840" y="438" width="200" height="28" fill="#E8E5DF" rx="2" stroke="#C8C3B8" stroke-width="1"/>
+  <text x="858" y="456" font-family="monospace" font-size="11" fill="#2C3040">500</text>
+  <!-- Footer buttons -->
+  <line x1="401" y1="660" x2="1080" y2="660" stroke="#C8C3B8" stroke-width="1"/>
+  <rect x="401" y="661" width="679" height="39" fill="#D4CFC6"/>
+  <rect x="900" y="670" width="80" height="24" fill="#4040B0" rx="2"/>
+  <text x="940" y="686" text-anchor="middle" font-family="monospace" font-size="10" fill="#ffffff" font-weight="600">Save</text>
+  <rect x="990" y="670" width="80" height="24" fill="#DED9D0" rx="2" stroke="#808080" stroke-width="1"/>
+  <text x="1030" y="686" text-anchor="middle" font-family="monospace" font-size="10" fill="#2C3040">Cancel</text>
+  <!-- Status bar -->
+  <rect x="0" y="776" width="1280" height="24" fill="#4040B0"/>
+  <text x="12" y="792" font-family="monospace" font-size="10" fill="#ffffff">main</text>
+  <!-- PLACEHOLDER watermark -->
+  <text x="640" y="750" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" font-weight="bold" fill="#C8C3B8" opacity="0.25" transform="rotate(-15 640 750)">PLACEHOLDER</text>
+</svg>
