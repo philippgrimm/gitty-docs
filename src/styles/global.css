@@ -1,0 +1,17 @@
+/* Starlight + Tailwind v4 cascade layer ordering */
+@layer base, starlight, theme, components, utilities;
+
+/* Starlight-Tailwind compatibility layer */
+@import '@astrojs/starlight-tailwind';
+
+/* Tailwind v4 theme and utilities */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Web fonts — loaded via <link> in BaseHead, defined here for reference */
+@theme {
+  --font-sans: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Pixelify Sans', sans-serif;
+  --font-pixel: 'Press Start 2P', monospace;
+}
