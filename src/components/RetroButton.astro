@@ -1,0 +1,98 @@
+---
+/**
+ * RetroButton — Win95-style beveled button
+ *
+ * Renders as <a> when href is provided, <button> otherwise.
+ * Uses .btn-bevel class for the raised 3D bevel effect.
+ */
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'retro-btn',
+    `retro-btn--${variant}`,
+    `retro-btn--${size}`,
+    className,
+  ]}
+>
+  <slot />
+</Tag>
+
+<style>
+  .retro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: var(--font-pixel);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+  }
+
+  /* Size variants */
+  .retro-btn--sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 7px;
+  }
+  .retro-btn--md {
+    padding: 0.5rem 1.25rem;
+    font-size: 9px;
+  }
+  .retro-btn--lg {
+    padding: 0.625rem 1.75rem;
+    font-size: 10px;
+  }
+
+  /* Primary variant — beveled raised surface */
+  .retro-btn--primary {
+    background-color: var(--surface-1);
+    color: var(--text-primary);
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #404040;
+  }
+  .retro-btn--primary:hover {
+    background-color: var(--surface-2);
+  }
+  .retro-btn--primary:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0px #404040, inset -1px -1px 0px #dfdfdf;
+  }
+
+  /* Ghost variant — flat, accent-colored, subtle border */
+  .retro-btn--ghost {
+    background-color: transparent;
+    color: var(--accent-text);
+    border: 1px solid rgba(64, 64, 176, 0.35);
+  }
+  .retro-btn--ghost:hover {
+    background-color: var(--accent-muted);
+    border-color: rgba(64, 64, 176, 0.6);
+  }
+  .retro-btn--ghost:active {
+    background-color: rgba(64, 64, 176, 0.2);
+  }
+</style>

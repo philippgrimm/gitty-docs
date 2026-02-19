@@ -1,0 +1,68 @@
+---
+/**
+ * FeatureCard — Panel-inset feature card
+ *
+ * Beveled inset border with retro paper texture.
+ * Exposes an icon slot and title/description props.
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class:list={['feature-card', 'panel-inset', 'retro-paper', className]}>
+  <div class="feature-card__icon">
+    <slot name="icon" />
+  </div>
+  <h3 class="feature-card__title">{title}</h3>
+  <p class="feature-card__desc">{description}</p>
+</div>
+
+<style>
+  .feature-card {
+    background-color: var(--surface-1);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    transition: box-shadow var(--transition-normal);
+  }
+
+  .feature-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .feature-card__icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-card__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .feature-card__desc {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+</style>

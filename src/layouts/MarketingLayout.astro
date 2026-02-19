@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'A beautifully crafted, retro-themed macOS Git client.' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F2EFE9" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link
+      rel="stylesheet"
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600|jetbrains-mono:400,500,600|pixelify-sans:400,500,600,700|press-start-2p:400"
+    />
+  </head>
+  <body class="min-h-screen bg-[var(--surface-0)] text-[var(--text-primary)] font-sans retro-paper crt-scanlines">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,39 @@
+---
+/**
+ * KeyboardKey — A single keyboard key cap
+ *
+ * Renders a beveled key-cap with 3D depth via inset shadows.
+ */
+
+interface Props {
+  key: string;
+}
+
+const { key } = Astro.props;
+---
+
+<kbd class="kbd-key">{key}</kbd>
+
+<style>
+  .kbd-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    padding: 0.15rem 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--text-primary);
+    background-color: var(--surface-2);
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    border-radius: 3px;
+    box-shadow:
+      inset 1px 1px 0px #dfdfdf,
+      inset -1px -1px 0px #404040,
+      0 2px 0 rgba(0, 0, 0, 0.2);
+    user-select: none;
+    white-space: nowrap;
+  }
+</style>
