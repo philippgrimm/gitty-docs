@@ -1,5 +1,8 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
+import Logo from '../components/Logo.astro';
+import RetroButton from '../components/RetroButton.astro';
+import Screenshot from '../components/Screenshot.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -9,8 +12,45 @@ const base = import.meta.env.BASE_URL;
   </header>
 
   <main>
-    <section id="hero" class="py-16 px-4 max-w-6xl mx-auto">
-      <p class="text-[var(--text-secondary)] font-display text-lg">Hero section coming soon</p>
+    <section id="hero" class="hero-section">
+      <div class="hero-inner">
+
+        <!-- Decorative catalog number — 90s boxed software authenticity -->
+        <p class="hero-catalog">v 1.0 — macOS 14+ — GITTY-001</p>
+
+        <!-- Decorative rule -->
+        <div class="hero-rule" aria-hidden="true"></div>
+
+        <!-- Logo mark + tagline -->
+        <div class="hero-logo-wrap">
+          <Logo size="lg" showTagline />
+        </div>
+
+        <!-- Subtitle copy -->
+        <p class="hero-subtitle">
+          A macOS-native Git client with a retro soul.<br />
+          Stage, commit, branch, and sync — all from a beautifully crafted desktop app.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="hero-ctas">
+          <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="lg">
+            ⬇ Download for macOS
+          </RetroButton>
+          <RetroButton href={base + 'getting-started/'} variant="ghost" size="md">
+            Read the Docs
+          </RetroButton>
+        </div>
+
+        <!-- App preview in CRT bezel -->
+        <div class="hero-screenshot-wrap">
+          <Screenshot
+            src={base + 'screenshots/screenshot-01-staging.png'}
+            alt="gitty staging panel showing mixed file states"
+          />
+        </div>
+
+      </div>
     </section>
 
     <section id="features" class="py-16 px-4 max-w-6xl mx-auto">
@@ -34,3 +74,113 @@ const base = import.meta.env.BASE_URL;
     </div>
   </footer>
 </MarketingLayout>
+
+<style>
+  /* ── Hero Section ─────────────────────────────────────────── */
+  .hero-section {
+    position: relative;
+    padding: 5rem 1rem 6rem;
+    overflow: hidden;
+  }
+
+  /* Subtle dot-grid atmosphere — 90s grid paper feel */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(64, 64, 176, 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  /* Vignette fade at edges so grid doesn't compete with content */
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      transparent 40%,
+      var(--surface-0) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  /* Catalog number — tiny monospaced label like software packaging */
+  .hero-catalog {
+    margin: 0 0 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    opacity: 0.65;
+  }
+
+  /* Decorative dashed rule — evokes printed software catalog lines */
+  .hero-rule {
+    width: 100%;
+    max-width: 28rem;
+    height: 0;
+    border-top: 1px dashed rgba(64, 64, 176, 0.3);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Logo wrapper — centered, with bottom clearance */
+  .hero-logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  /* Override Logo's left-align so tagline centers under mark */
+  .hero-logo-wrap :global(.gitty-logo) {
+    align-items: center;
+  }
+
+  /* Subtitle — warm, readable, not competing with logo */
+  .hero-subtitle {
+    margin: 0 0 2.5rem;
+    max-width: 36rem;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.75;
+    color: var(--text-secondary);
+    letter-spacing: 0.01em;
+  }
+
+  /* CTA button row */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  /* Screenshot frame — restrained max-width so bezel reads cleanly */
+  .hero-screenshot-wrap {
+    width: 100%;
+    max-width: 52rem;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 7rem 2rem 8rem;
+    }
+  }
+</style>

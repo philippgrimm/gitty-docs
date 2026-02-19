@@ -3,4 +3,52 @@ title: Branching & Merging
 description: Create branches, merge changes, and resolve conflicts
 ---
 
-Content coming soon.
+## Switching Branches
+
+Click the branch dropdown in the top bar to see all your branches. Click any branch name to switch to it. If you're looking for a specific branch, type in the search field at the top of the dropdown to filter by name.
+
+## Auto-Stash on Dirty Tree
+
+If you have uncommitted changes when you switch branches, gitty detects this and shows a dialog. You can choose to auto-stash your changes, switch to the target branch, then restore the stash automatically. If restoring the stash causes conflicts with the new branch's state, gitty preserves the stash so you can resolve it manually.
+
+## Creating Branches
+
+Open the Command Palette with `Cmd+K` and type "Create Branch". Enter the new branch name and press Enter. gitty creates the branch and switches to it immediately.
+
+## Deleting Branches
+
+In the sidebar, hover over a branch to reveal the delete icon, then click it. Git won't let you delete a branch that has unmerged commits, so gitty surfaces that error rather than silently failing. You also can't delete the branch you're currently on.
+
+## Merging Branches
+
+In the sidebar, click the merge icon next to the branch you want to merge into your current branch. gitty runs the merge and, if conflicts occur, opens the conflict resolver automatically.
+
+## Conflict Resolution
+
+When a merge produces conflicts, the conflict resolver lists all affected files. Select a file to see the three-way diff: **Ours** (your current branch), **Theirs** (the incoming branch), and **Base** (the common ancestor).
+
+For each conflict you have four options:
+
+- **Accept Ours** — keep your version
+- **Accept Theirs** — take the incoming version
+- **Accept Both** — include both versions, one after the other
+- **Edit manually** — modify the result directly in the editor
+
+Once you resolve a file, gitty stages it automatically. Work through all conflicted files, then commit to finish the merge.
+
+## Interactive Rebase
+
+From the history panel, click **Rebase** to start an interactive rebase. gitty shows a list of commits you can reorder by dragging and dropping.
+
+For each commit, choose an action:
+
+- **Pick** — keep the commit as-is
+- **Squash** — combine with the previous commit and merge both messages
+- **Fixup** — combine with the previous commit and discard this commit's message
+- **Drop** — remove the commit entirely
+
+Confirm when you're done, and gitty applies the rebase. If conflicts arise during the rebase, the conflict resolver opens at each step.
+
+## Filtering Branches
+
+The branch dropdown's search field filters branches as you type. Local branches appear first. Remote-only branches follow below them. Remote branches that already have a local counterpart are hidden to keep the list clean.

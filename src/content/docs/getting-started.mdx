@@ -3,4 +3,65 @@ title: Getting Started
 description: Install gitty and learn the basics of the interface
 ---
 
-Content coming soon.
+gitty is a macOS-native Git client built for developers who want a beautiful, keyboard-driven workflow. It takes visual cues from classic computing aesthetics while staying fast and practical. It's free and open source.
+
+This guide walks you through installation and the core interface. It assumes you already know git basics.
+
+## Installation
+
+1. Go to the [gitty releases page](https://github.com/philippgrimm/gitty/releases/latest)
+2. Download the latest `.dmg` file
+3. Open the DMG and drag gitty into your Applications folder
+4. Launch gitty from Applications
+
+On first launch, macOS may show a verification prompt. Click **Open** to proceed. This happens because gitty is distributed outside the App Store.
+
+## Opening a Repository
+
+Click the folder icon in the toolbar or press `Cmd+O` to open a repository. Select any folder that contains a `.git` directory and gitty will load it into the main workspace.
+
+Repositories you've opened before appear in the repo switcher dropdown at the top left. Click it to switch between projects without leaving the app.
+
+## Understanding the Interface
+
+The main window is divided into a few key areas:
+
+**Top bar** — The repository switcher sits on the left. Next to it is the current branch dropdown, which you can click to switch branches. On the right side you'll find the sync buttons for push, pull, and fetch, plus a theme toggle.
+
+**Left panel (Staging)** — This is where you manage what goes into your next commit. Files are grouped into three sections: unstaged changes, staged changes, and untracked files. Each file shows a colored status dot so you can see at a glance what's modified, added, or deleted.
+
+**Bottom left (Commit)** — The commit panel sits below the staging area. Type your commit message in the textarea. The conventional commit template dropdown lets you pick a prefix like `feat:`, `fix:`, or `docs:` without typing it manually. If your branch name follows a pattern like `feature/TICKET-123`, gitty will pre-fill `feat(TICKET-123):` for you.
+
+**Right panel (Diff Viewer)** — Click any file in the staging panel to see its diff here. Syntax highlighting makes it easy to read. You can toggle between unified and split view depending on your preference.
+
+**Sidebar** — The expandable sidebar on the right gives you access to branches, tags, stashes, and commit history. Use it to browse your repo's structure without leaving the main view.
+
+## Your First Commit
+
+1. Make some changes to files in your project
+2. Open gitty and find the changed files in the staging panel
+3. Click the stage button next to each file you want to include, or press `Cmd+Shift+K` to stage everything at once
+4. Write your commit message in the commit panel at the bottom left
+5. Press `Cmd+Enter` to commit
+
+If you want to commit and push in one step, use `Cmd+Shift+Enter` instead.
+
+That's it. The staged files move out of the staging panel and your commit appears in the history.
+
+## Keyboard Shortcuts
+
+gitty is built around keyboard shortcuts. Two worth knowing right away:
+
+- `Cmd+K` opens the **Command Palette**, which gives you access to all 28 commands without memorizing anything
+- `Cmd+/` shows the full **keyboard shortcuts reference** overlay
+
+A few other shortcuts you'll use constantly:
+
+| Shortcut | Action |
+|---|---|
+| `Cmd+O` | Open repository |
+| `Cmd+Shift+K` | Stage all changes |
+| `Cmd+Enter` | Commit |
+| `Cmd+Shift+Enter` | Commit and push |
+
+When you're ready to explore more, the Command Palette is the fastest way to discover what gitty can do.

@@ -3,4 +3,68 @@ title: Staging & Committing
 description: Stage files, write commits, and manage your changes
 ---
 
-Content coming soon.
+## Staging Files
+
+Click the **+** icon next to any file in the changes panel to stage it. To stage everything at once, press `Cmd+Shift+K`. Changed your mind? `Cmd+Shift+U` unstages all files. The **discard** button next to a file reverts it back to its last committed state, so use that one carefully.
+
+### Multi-Select
+
+You don't have to act on files one at a time. `Cmd+Click` selects individual files, and `Shift+Click` selects a range. Once you have a selection, right-click to get a context menu with options to stage, unstage, or discard all selected files at once.
+
+### Tree View
+
+By default, gitty shows a flat list of changed files. Click the view toggle button at the top of the changes panel to switch to tree view, which groups files by directory with collapsible folders. Useful when you're working across many directories and want to see the structure at a glance.
+
+---
+
+## Hunk Staging
+
+Sometimes you only want to commit part of a file's changes. Open the diff viewer for any file and you'll see each changed block (hunk) has a **Stage Hunk** button. Click it to stage just that block, leaving the rest of the file unstaged.
+
+### Line Staging
+
+For even finer control, individual lines within a hunk have checkboxes. Check the lines you want, then click **Stage Selected Lines**. This is the most precise way to build a commit, letting you split unrelated changes in the same file across separate commits.
+
+---
+
+## Writing Commit Messages
+
+The commit panel sits at the bottom left of the window. Type your message there. The commit button stays disabled until you have at least one staged file and a non-empty message, so you can't accidentally commit nothing.
+
+Press `Cmd+Enter` to commit without reaching for the mouse.
+
+### Conventional Commit Templates
+
+Click the template dropdown above the message field to pick a prefix: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, or `chore`. Selecting one inserts it at the start of your message so you don't have to type it manually.
+
+### Branch-Based Prefill
+
+When you're on a branch like `feature/TICKET-123`, gitty reads the branch name and automatically prefills `feat(TICKET-123):` in the commit message. This works for `feature/`, `bugfix/`, and `hotfix/` branch patterns. You can edit or clear the prefill before committing.
+
+---
+
+## Amend Mode
+
+Made a typo in your last commit message, or forgot to include a file? Toggle **amend mode** in the commit panel. The previous commit message loads into the textarea and the staged files update to reflect what was in that commit. Edit the message, adjust the staged files if needed, then press `Cmd+Enter` to amend.
+
+### Commit History Cycling
+
+Press the **Up** or **Down** arrow keys while the commit textarea is focused to cycle through your previous commit messages. Your current draft is saved automatically when you start cycling, so you won't lose what you were typing.
+
+---
+
+## Undo Last Commit
+
+Press `Cmd+Z` to undo the last commit. This is a soft reset, so your changes stay staged and ready to recommit. If the commit was already pushed to remote, a confirmation dialog appears before anything happens.
+
+---
+
+## Stashing
+
+Need to set aside your current changes without committing? Press `Cmd+Shift+S` to stash everything. To stash a single file, right-click it in the changes panel and choose **Stash File**.
+
+Your stashes appear in the sidebar. From there you can:
+
+- **Apply** a stash to bring the changes back while keeping the stash entry
+- **Pop** a stash to apply it and remove the entry
+- **Drop** a stash to delete it without applying
