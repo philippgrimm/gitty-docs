@@ -10,8 +10,161 @@
 
 /* Web fonts — loaded via <link> in BaseHead, defined here for reference */
 @theme {
-  --font-sans: 'Instrument Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-display: 'Pixelify Sans', sans-serif;
-  --font-pixel: 'Press Start 2P', monospace;
+  --font-sans: 'Instrument Sans', 'Inter', system-ui, ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace;
+  --font-display: 'Pixelify Sans', 'JetBrains Mono', ui-monospace, monospace;
+  --font-pixel: 'Press Start 2P', 'Pixelify Sans', ui-monospace, monospace;
+
+  /* Accent color tokens for Tailwind utilities */
+  --color-accent: #4040B0;
+  --color-accent-content: #4040B0;
+  --color-accent-foreground: #ffffff;
+}
+
+/* ============================================================
+   Gitty Design System — CSS Custom Properties (Light Mode)
+   ============================================================ */
+:root {
+    /* Surface Colors */
+    --surface-0: #E8E5DF;
+    --surface-1: #DED9D0;
+    --surface-2: #D4CFC6;
+    --surface-3: #C8C3B8;
+
+    /* Border Colors */
+    --border-default: #C8C3B8;
+    --border-subtle: #D8D3C8;
+    --border-strong: #B8B3A8;
+
+    /* Text Colors */
+    --text-primary: #2C3040;
+    --text-secondary: #4A4E5E;
+    --text-tertiary: #686C7C;
+
+    /* Accent Colors - IBM Carbon Blue */
+    --accent: #4040B0;
+    --accent-muted: rgba(64, 64, 176, 0.15);
+    --accent-text: #4040B0;
+
+    /* Semantic Colors */
+    --color-green: #1E8C0A;
+    --color-red: #D91440;
+    --color-yellow: #C08800;
+    --color-peach: #E05800;
+    --color-blue: #4040B0;
+    --color-mauve: #7C3AED;
+    --color-teal: #0D9488;
+    --color-sky: #0EA5E9;
+    --color-lavender: #6366F1;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(44, 48, 64, 0.08);
+    --shadow-md: 0 4px 12px rgba(44, 48, 64, 0.10);
+
+    /* Transitions */
+    --transition-fast: 100ms ease;
+    --transition-normal: 150ms ease;
+    --transition-slow: 250ms ease;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+}
+
+/* ============================================================
+   Retro Utility Classes
+   ============================================================ */
+
+/* Win95-style Beveled Buttons */
+.btn-bevel {
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #404040;
+    transition: all 0.1s ease;
+}
+.btn-bevel:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0px #404040, inset -1px -1px 0px #dfdfdf;
+}
+
+/* Panel Inset */
+.panel-inset {
+    border: 2px solid;
+    border-color: #C8C3B8 #ffffff #ffffff #C8C3B8;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Retro Paper */
+.retro-paper {
+    background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 24px,
+        rgba(200, 195, 184, 0.3) 24px, rgba(200, 195, 184, 0.3) 25px
+    );
+}
+
+/* CRT Scanlines */
+.crt-scanlines { position: relative; }
+.crt-scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg, rgba(255, 255, 255, 0.015) 0px,
+        transparent 1px, transparent 3px,
+        rgba(255, 255, 255, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 98;
+}
+
+/* Terminal Block Headers */
+.terminal-header {
+    position: relative;
+    padding-left: 1.5rem;
+    background: linear-gradient(90deg, rgba(64, 64, 176, 0.06), transparent 60%);
+}
+.terminal-header::before {
+    content: '>';
+    position: absolute;
+    left: 0.75rem;
+    font-family: var(--font-display);
+    color: var(--accent);
+    text-shadow: 0 0 4px rgba(64, 64, 176, 0.3);
+}
+
+/* Window Chrome Header */
+.window-chrome {
+    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-1) 100%);
+    border-bottom: 1px solid var(--border-strong);
+    box-shadow: 0 1px 0 rgba(64, 64, 176, 0.08), var(--shadow-sm);
+}
+
+/* Retro Input Fields */
+.retro-input {
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+    caret-color: var(--accent);
+    background: #F8F6F2;
+}
+.retro-input:focus {
+    border-color: #4040B0 #a0a0e0 #a0a0e0 #4040B0;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(64, 64, 176, 0.2);
+}
+
+/* ============================================================
+   Animation Keyframes
+   ============================================================ */
+@keyframes slideIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes commitFlash {
+    0% { background-color: rgba(64, 64, 176, 0.15); }
+    100% { background-color: transparent; }
 }

@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 80" role="img" aria-label="gitty — Git, handcrafted for macOS">
+  <title>gitty</title>
+  <desc>Pixel-art text-mark logo for gitty. Git, handcrafted for macOS.</desc>
+
+  <!--
+    gitty logo — pixel-art text-mark
+    Tagline: "Git, handcrafted for macOS"
+    Grid: 8px per pixel, 7×7px rects (1px gap for pixel-grid feel)
+    Palette:
+      #4040B0  — IBM Carbon Blue (main pixels)
+      #20208A  — deep indigo (drop shadow, offset +2,+2)
+      #808080  — Win95 gray (> prompt accent)
+      #ffffff / #808080 — Win95 bevel borders
+    Layout: > G I T T Y  (startX=16, startY=12)
+      >  : x=16,  4-col wide  (cols 0-3)
+      G  : x=56,  5-col wide  (cols 0-4)
+      I  : x=104, 5-col wide  (cols 0-4, body on col 2)
+      T1 : x=152, 5-col wide  (cols 0-4, body on col 2)
+      T2 : x=200, 5-col wide  (cols 0-4, body on col 2)
+      Y  : x=248, 5-col wide  (cols 0-4)
+  -->
+
+  <!-- Win95-style bevel container -->
+  <rect x="0" y="0" width="304" height="80" fill="#E8E5DF"/>
+  <!-- outer highlight (top-left white, bottom-right dark) -->
+  <line x1="0" y1="0" x2="303" y2="0" stroke="#ffffff" stroke-width="2"/>
+  <line x1="0" y1="0" x2="0" y2="79" stroke="#ffffff" stroke-width="2"/>
+  <line x1="303" y1="0" x2="303" y2="80" stroke="#808080" stroke-width="2"/>
+  <line x1="0" y1="79" x2="304" y2="79" stroke="#808080" stroke-width="2"/>
+  <!-- inner shadow (top-left light gray, bottom-right white) -->
+  <line x1="2" y1="2" x2="301" y2="2" stroke="#dfdfdf" stroke-width="1"/>
+  <line x1="2" y1="2" x2="2" y2="77" stroke="#dfdfdf" stroke-width="1"/>
+  <line x1="301" y1="2" x2="301" y2="78" stroke="#ffffff" stroke-width="1"/>
+  <line x1="2" y1="77" x2="302" y2="77" stroke="#ffffff" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SHADOW LAYER — offset (2,2), #20208A, opacity 0.45 -->
+  <!-- ═══════════════════════════════════ -->
+  <g fill="#20208A" opacity="0.45">
+
+    <!-- > prompt shadow -->
+    <rect x="18" y="14" width="7" height="7"/>
+    <rect x="26" y="22" width="7" height="7"/>
+    <rect x="34" y="30" width="7" height="7"/>
+    <rect x="42" y="38" width="7" height="7"/>
+    <rect x="34" y="46" width="7" height="7"/>
+    <rect x="26" y="54" width="7" height="7"/>
+    <rect x="18" y="62" width="7" height="7"/>
+
+    <!-- G shadow -->
+    <rect x="66" y="14" width="7" height="7"/>
+    <rect x="74" y="14" width="7" height="7"/>
+    <rect x="82" y="14" width="7" height="7"/>
+    <rect x="58" y="22" width="7" height="7"/>
+    <rect x="58" y="30" width="7" height="7"/>
+    <rect x="58" y="38" width="7" height="7"/>
+    <rect x="74" y="38" width="7" height="7"/>
+    <rect x="82" y="38" width="7" height="7"/>
+    <rect x="90" y="38" width="7" height="7"/>
+    <rect x="58" y="46" width="7" height="7"/>
+    <rect x="90" y="46" width="7" height="7"/>
+    <rect x="58" y="54" width="7" height="7"/>
+    <rect x="90" y="54" width="7" height="7"/>
+    <rect x="66" y="62" width="7" height="7"/>
+    <rect x="74" y="62" width="7" height="7"/>
+    <rect x="82" y="62" width="7" height="7"/>
+
+    <!-- I shadow -->
+    <rect x="114" y="14" width="7" height="7"/>
+    <rect x="122" y="14" width="7" height="7"/>
+    <rect x="130" y="14" width="7" height="7"/>
+    <rect x="122" y="22" width="7" height="7"/>
+    <rect x="122" y="30" width="7" height="7"/>
+    <rect x="122" y="38" width="7" height="7"/>
+    <rect x="122" y="46" width="7" height="7"/>
+    <rect x="122" y="54" width="7" height="7"/>
+    <rect x="114" y="62" width="7" height="7"/>
+    <rect x="122" y="62" width="7" height="7"/>
+    <rect x="130" y="62" width="7" height="7"/>
+
+    <!-- T1 shadow -->
+    <rect x="154" y="14" width="7" height="7"/>
+    <rect x="162" y="14" width="7" height="7"/>
+    <rect x="170" y="14" width="7" height="7"/>
+    <rect x="178" y="14" width="7" height="7"/>
+    <rect x="186" y="14" width="7" height="7"/>
+    <rect x="170" y="22" width="7" height="7"/>
+    <rect x="170" y="30" width="7" height="7"/>
+    <rect x="170" y="38" width="7" height="7"/>
+    <rect x="170" y="46" width="7" height="7"/>
+    <rect x="170" y="54" width="7" height="7"/>
+    <rect x="170" y="62" width="7" height="7"/>
+
+    <!-- T2 shadow -->
+    <rect x="202" y="14" width="7" height="7"/>
+    <rect x="210" y="14" width="7" height="7"/>
+    <rect x="218" y="14" width="7" height="7"/>
+    <rect x="226" y="14" width="7" height="7"/>
+    <rect x="234" y="14" width="7" height="7"/>
+    <rect x="218" y="22" width="7" height="7"/>
+    <rect x="218" y="30" width="7" height="7"/>
+    <rect x="218" y="38" width="7" height="7"/>
+    <rect x="218" y="46" width="7" height="7"/>
+    <rect x="218" y="54" width="7" height="7"/>
+    <rect x="218" y="62" width="7" height="7"/>
+
+    <!-- Y shadow -->
+    <rect x="250" y="14" width="7" height="7"/>
+    <rect x="282" y="14" width="7" height="7"/>
+    <rect x="250" y="22" width="7" height="7"/>
+    <rect x="282" y="22" width="7" height="7"/>
+    <rect x="258" y="30" width="7" height="7"/>
+    <rect x="274" y="30" width="7" height="7"/>
+    <rect x="266" y="38" width="7" height="7"/>
+    <rect x="266" y="46" width="7" height="7"/>
+    <rect x="266" y="54" width="7" height="7"/>
+    <rect x="266" y="62" width="7" height="7"/>
+
+  </g>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- MAIN LAYER — IBM Carbon Blue #4040B0 -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- > prompt — Win95 gray -->
+  <g fill="#808080">
+    <rect x="16" y="12" width="7" height="7"/>
+    <rect x="24" y="20" width="7" height="7"/>
+    <rect x="32" y="28" width="7" height="7"/>
+    <rect x="40" y="36" width="7" height="7"/>
+    <rect x="32" y="44" width="7" height="7"/>
+    <rect x="24" y="52" width="7" height="7"/>
+    <rect x="16" y="60" width="7" height="7"/>
+  </g>
+
+  <!-- G -->
+  <g fill="#4040B0">
+    <!-- row 0: cols 1,2,3 -->
+    <rect x="64" y="12" width="7" height="7"/>
+    <rect x="72" y="12" width="7" height="7"/>
+    <rect x="80" y="12" width="7" height="7"/>
+    <!-- row 1: col 0 -->
+    <rect x="56" y="20" width="7" height="7"/>
+    <!-- row 2: col 0 -->
+    <rect x="56" y="28" width="7" height="7"/>
+    <!-- row 3: cols 0,2,3,4 -->
+    <rect x="56" y="36" width="7" height="7"/>
+    <rect x="72" y="36" width="7" height="7"/>
+    <rect x="80" y="36" width="7" height="7"/>
+    <rect x="88" y="36" width="7" height="7"/>
+    <!-- row 4: cols 0,4 -->
+    <rect x="56" y="44" width="7" height="7"/>
+    <rect x="88" y="44" width="7" height="7"/>
+    <!-- row 5: cols 0,4 -->
+    <rect x="56" y="52" width="7" height="7"/>
+    <rect x="88" y="52" width="7" height="7"/>
+    <!-- row 6: cols 1,2,3 -->
+    <rect x="64" y="60" width="7" height="7"/>
+    <rect x="72" y="60" width="7" height="7"/>
+    <rect x="80" y="60" width="7" height="7"/>
+  </g>
+
+  <!-- I -->
+  <g fill="#4040B0">
+    <!-- row 0: cols 1,2,3 (serifs) -->
+    <rect x="112" y="12" width="7" height="7"/>
+    <rect x="120" y="12" width="7" height="7"/>
+    <rect x="128" y="12" width="7" height="7"/>
+    <!-- rows 1-5: col 2 -->
+    <rect x="120" y="20" width="7" height="7"/>
+    <rect x="120" y="28" width="7" height="7"/>
+    <rect x="120" y="36" width="7" height="7"/>
+    <rect x="120" y="44" width="7" height="7"/>
+    <rect x="120" y="52" width="7" height="7"/>
+    <!-- row 6: cols 1,2,3 (serifs) -->
+    <rect x="112" y="60" width="7" height="7"/>
+    <rect x="120" y="60" width="7" height="7"/>
+    <rect x="128" y="60" width="7" height="7"/>
+  </g>
+
+  <!-- T1 -->
+  <g fill="#4040B0">
+    <!-- row 0: all 5 cols -->
+    <rect x="152" y="12" width="7" height="7"/>
+    <rect x="160" y="12" width="7" height="7"/>
+    <rect x="168" y="12" width="7" height="7"/>
+    <rect x="176" y="12" width="7" height="7"/>
+    <rect x="184" y="12" width="7" height="7"/>
+    <!-- rows 1-6: col 2 -->
+    <rect x="168" y="20" width="7" height="7"/>
+    <rect x="168" y="28" width="7" height="7"/>
+    <rect x="168" y="36" width="7" height="7"/>
+    <rect x="168" y="44" width="7" height="7"/>
+    <rect x="168" y="52" width="7" height="7"/>
+    <rect x="168" y="60" width="7" height="7"/>
+  </g>
+
+  <!-- T2 -->
+  <g fill="#4040B0">
+    <!-- row 0: all 5 cols -->
+    <rect x="200" y="12" width="7" height="7"/>
+    <rect x="208" y="12" width="7" height="7"/>
+    <rect x="216" y="12" width="7" height="7"/>
+    <rect x="224" y="12" width="7" height="7"/>
+    <rect x="232" y="12" width="7" height="7"/>
+    <!-- rows 1-6: col 2 -->
+    <rect x="216" y="20" width="7" height="7"/>
+    <rect x="216" y="28" width="7" height="7"/>
+    <rect x="216" y="36" width="7" height="7"/>
+    <rect x="216" y="44" width="7" height="7"/>
+    <rect x="216" y="52" width="7" height="7"/>
+    <rect x="216" y="60" width="7" height="7"/>
+  </g>
+
+  <!-- Y -->
+  <g fill="#4040B0">
+    <!-- row 0: cols 0,4 -->
+    <rect x="248" y="12" width="7" height="7"/>
+    <rect x="280" y="12" width="7" height="7"/>
+    <!-- row 1: cols 0,4 -->
+    <rect x="248" y="20" width="7" height="7"/>
+    <rect x="280" y="20" width="7" height="7"/>
+    <!-- row 2: cols 1,3 -->
+    <rect x="256" y="28" width="7" height="7"/>
+    <rect x="272" y="28" width="7" height="7"/>
+    <!-- rows 3-6: col 2 -->
+    <rect x="264" y="36" width="7" height="7"/>
+    <rect x="264" y="44" width="7" height="7"/>
+    <rect x="264" y="52" width="7" height="7"/>
+    <rect x="264" y="60" width="7" height="7"/>
+  </g>
+
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="gitty">
+  <title>gitty</title>
+  <!--
+    gitty apple-touch-icon — 180×180 SVG source
+    NOTE: iOS requires a PNG file at this path. Convert using:
+      npx sharp-cli -i public/apple-touch-icon.svg -o public/apple-touch-icon.png --width 180 --height 180
+
+    Or with Inkscape:
+      inkscape --export-type=png --export-filename=public/apple-touch-icon.png --export-width=180 public/apple-touch-icon.svg
+
+    Pixel grid: 5×7 (p=18, rect=17), centered in 180×180
+      col·0=x45, col·1=x63, col·2=x81, col·3=x99, col·4=x117
+      row·0=y27, row·1=y45, row·2=y63, row·3=y81, row·4=y99, row·5=y117, row·6=y135
+  -->
+
+  <!-- Blue square background (iOS clips to rounded rect automatically) -->
+  <rect width="180" height="180" fill="#4040B0"/>
+
+  <!-- Pixel-art "g" in white, 5×7 pixel grid scaled to p=18 -->
+  <g fill="#ffffff">
+    <!-- row 0: .XXX. — cols 1,2,3 -->
+    <rect x="63" y="27" width="17" height="17"/>
+    <rect x="81" y="27" width="17" height="17"/>
+    <rect x="99" y="27" width="17" height="17"/>
+
+    <!-- row 1: X.... — col 0 -->
+    <rect x="45" y="45" width="17" height="17"/>
+
+    <!-- row 2: X.XXX — cols 0,2,3,4 -->
+    <rect x="45" y="63" width="17" height="17"/>
+    <rect x="81" y="63" width="17" height="17"/>
+    <rect x="99" y="63" width="17" height="17"/>
+    <rect x="117" y="63" width="17" height="17"/>
+
+    <!-- row 3: X...X — cols 0,4 -->
+    <rect x="45" y="81" width="17" height="17"/>
+    <rect x="117" y="81" width="17" height="17"/>
+
+    <!-- row 4: .XXXX — cols 1,2,3,4 -->
+    <rect x="63" y="99" width="17" height="17"/>
+    <rect x="81" y="99" width="17" height="17"/>
+    <rect x="99" y="99" width="17" height="17"/>
+    <rect x="117" y="99" width="17" height="17"/>
+
+    <!-- row 5: ....X — col 4 (descender tail) -->
+    <rect x="117" y="117" width="17" height="17"/>
+
+    <!-- row 6: .XXX. — cols 1,2,3 (descender close) -->
+    <rect x="63" y="135" width="17" height="17"/>
+    <rect x="81" y="135" width="17" height="17"/>
+    <rect x="99" y="135" width="17" height="17"/>
+  </g>
+</svg>

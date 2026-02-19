@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="gitty">
+  <title>gitty</title>
+  <!--
+    gitty favicon — pixel-art lowercase "g"
+    Primary favicon for modern browsers (SVG support: Chrome 80+, Firefox 41+, Safari 12+)
+    ViewBox: 32×32  |  Palette: #4040B0 bg, #ffffff pixels
+    Pixel grid: 5×7 (p=4, rect=3), centered: startX=6, startY=2
+
+    For favicon.ico fallback: generate from this SVG at 32×32 using
+      `npx sharp-cli -i public/favicon.svg -o public/favicon.ico`
+
+    For apple-touch-icon.png (180×180):
+      `npx sharp-cli -i public/apple-touch-icon.svg -o public/apple-touch-icon.png`
+  -->
+
+  <!-- Blue rounded background -->
+  <rect width="32" height="32" rx="4" fill="#4040B0"/>
+
+  <!-- Pixel-art lowercase "g" in white
+       Grid: col·0=x6, col·1=x10, col·2=x14, col·3=x18, col·4=x22
+             row·0=y2,  row·1=y6,  row·2=y10, row·3=y14, row·4=y18, row·5=y22, row·6=y26
+       Each rect: 3×3 (1px gap to preserve pixel-art feel)
+  -->
+  <g fill="#ffffff">
+    <!-- row 0: .XXX. — cols 1,2,3 -->
+    <rect x="10" y="2" width="3" height="3"/>
+    <rect x="14" y="2" width="3" height="3"/>
+    <rect x="18" y="2" width="3" height="3"/>
+
+    <!-- row 1: X.... — col 0 -->
+    <rect x="6" y="6" width="3" height="3"/>
+
+    <!-- row 2: X.XXX — cols 0,2,3,4 -->
+    <rect x="6" y="10" width="3" height="3"/>
+    <rect x="14" y="10" width="3" height="3"/>
+    <rect x="18" y="10" width="3" height="3"/>
+    <rect x="22" y="10" width="3" height="3"/>
+
+    <!-- row 3: X...X — cols 0,4 -->
+    <rect x="6" y="14" width="3" height="3"/>
+    <rect x="22" y="14" width="3" height="3"/>
+
+    <!-- row 4: .XXXX — cols 1,2,3,4 -->
+    <rect x="10" y="18" width="3" height="3"/>
+    <rect x="14" y="18" width="3" height="3"/>
+    <rect x="18" y="18" width="3" height="3"/>
+    <rect x="22" y="18" width="3" height="3"/>
+
+    <!-- row 5: ....X — col 4 (descender tail) -->
+    <rect x="22" y="22" width="3" height="3"/>
+
+    <!-- row 6: .XXX. — cols 1,2,3 (descender close) -->
+    <rect x="10" y="26" width="3" height="3"/>
+    <rect x="14" y="26" width="3" height="3"/>
+    <rect x="18" y="26" width="3" height="3"/>
+  </g>
+</svg>

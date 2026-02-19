@@ -1,0 +1,99 @@
+---
+/**
+ * gitty Logo Component
+ *
+ * Tagline: "Git, handcrafted for macOS"
+ *
+ * A reusable Astro component that renders the gitty pixel-art text-mark.
+ * The logo is a Win95-inspired retro design spelling "> GITTY" using
+ * hand-crafted pixel-art letters on an 8px grid.
+ *
+ * Palette:
+ *   #4040B0  — IBM Carbon Blue (main letterforms)
+ *   #20208A  — deep indigo (pixel drop-shadow)
+ *   #808080  — Win95 gray (> prompt accent)
+ *   #E8E5DF  — warm beige (bevel background)
+ *
+ * Usage:
+ *   <Logo />                      — default medium size
+ *   <Logo size="sm" />            — 120px wide
+ *   <Logo size="md" />            — 200px wide (default)
+ *   <Logo size="lg" />            — 320px wide
+ *   <Logo class="my-custom-class" />
+ *   <Logo size="lg" showTagline />
+ */
+
+// Import the SVG as a URL (Vite processes src/assets/* and returns a hashed public URL)
+import logoSrc from '../assets/logo.svg?url';
+
+interface Props {
+  /** Preset size — controls rendered width while preserving aspect ratio */
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Additional CSS classes for the wrapper element */
+  class?: string;
+  /** Whether to render the tagline below the mark */
+  showTagline?: boolean;
+}
+
+const {
+  size = 'md',
+  class: className = '',
+  showTagline = false,
+} = Astro.props;
+
+/** Logo natural aspect ratio: 304 × 80 → 3.8 */
+const widthMap: Record<NonNullable<Props['size']>, number> = {
+  sm: 120,
+  md: 200,
+  lg: 320,
+  xl: 500,
+};
+
+const width = widthMap[size];
+const height = Math.round(width / 3.8);
+---
+
+<div class:list={['gitty-logo', `gitty-logo--${size}`, className]}>
+  <img
+    src={logoSrc}
+    alt="gitty — Git, handcrafted for macOS"
+    width={width}
+    height={height}
+    loading="eager"
+    decoding="async"
+    draggable="false"
+  />
+  {showTagline && (
+    <p class="gitty-logo__tagline">Git, handcrafted for macOS</p>
+  )}
+</div>
+
+<style>
+  .gitty-logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    user-select: none;
+  }
+
+  .gitty-logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    /* crisp-edges preserves the pixel-art look when scaled */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .gitty-logo__tagline {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #808080;
+    line-height: 1;
+    padding-left: 0.125rem;
+  }
+</style>
