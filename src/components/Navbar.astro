@@ -10,6 +10,7 @@
 
 import Logo from './Logo.astro';
 import RetroButton from './RetroButton.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -30,6 +31,7 @@ const base = import.meta.env.BASE_URL;
 
     <!-- Desktop CTA -->
     <div class="navbar-cta">
+      <ThemeToggle />
       <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="sm">
         ⬇ Download
       </RetroButton>
@@ -58,6 +60,7 @@ const base = import.meta.env.BASE_URL;
       <li><a href={`${base}getting-started/`} class="mobile-link">Docs</a></li>
     </ul>
     <div class="mobile-cta">
+      <ThemeToggle />
       <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="sm">
         ⬇ Download
       </RetroButton>
@@ -98,7 +101,7 @@ const base = import.meta.env.BASE_URL;
     z-index: 50;
     background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-1) 100%);
     border-bottom: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
     box-shadow: 0 1px 0 rgba(64, 64, 176, 0.08), 0 2px 6px rgba(44, 48, 64, 0.08);
   }
 
@@ -151,17 +154,18 @@ const base = import.meta.env.BASE_URL;
   .navbar-link:hover {
     color: var(--text-primary);
     background-color: var(--surface-3);
-    border-color: #808080 #ffffff #ffffff #808080;
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
   }
   .navbar-link:active {
     background-color: var(--surface-2);
-    border-color: #ffffff #808080 #808080 #ffffff;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
   }
 
   /* ── CTA area — right-aligned ────────────────────────────── */
   .navbar-cta {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     flex-shrink: 0;
   }
 
@@ -176,7 +180,7 @@ const base = import.meta.env.BASE_URL;
     height: 36px;
     background: transparent;
     border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
     cursor: pointer;
     flex-shrink: 0;
     padding: 0;
@@ -187,7 +191,7 @@ const base = import.meta.env.BASE_URL;
   }
   .navbar-hamburger:active,
   .navbar-hamburger--open {
-    border-color: #808080 #ffffff #ffffff #808080;
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
     background-color: var(--surface-2);
   }
 
@@ -254,6 +258,8 @@ const base = import.meta.env.BASE_URL;
   .mobile-cta {
     margin-top: 1rem;
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   /* ── Responsive breakpoints ──────────────────────────────── */

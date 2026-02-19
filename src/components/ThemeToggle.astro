@@ -1,0 +1,95 @@
+---
+/**
+ * ThemeToggle — Win95-styled dark/light mode toggle button
+ *
+ * Reads current theme from document.documentElement.dataset.theme.
+ * Toggles between 'light' and 'dark', persisting to localStorage
+ * under the key 'starlight-theme'. Also updates <meta name="theme-color">.
+ *
+ * Uses bevel CSS variables for the Win95 pressed/raised effect.
+ */
+---
+
+<button
+  class="theme-toggle"
+  id="theme-toggle"
+  aria-label="Toggle dark mode"
+  type="button"
+  title="Toggle dark/light mode"
+>
+  <span class="theme-toggle-icon" id="theme-toggle-icon">☀</span>
+</button>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-toggle-icon');
+
+  function getCurrentTheme(): string {
+    return document.documentElement.dataset.theme ?? 'light';
+  }
+
+  function applyTheme(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('starlight-theme', theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? '#1e1e2e' : '#F2EFE9');
+    }
+    if (icon) {
+      icon.textContent = theme === 'dark' ? '☾' : '☀';
+    }
+  }
+
+  // Set initial icon based on current theme
+  if (icon) {
+    icon.textContent = getCurrentTheme() === 'dark' ? '☾' : '☀';
+  }
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const next = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--surface-2);
+    border: 2px solid;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-inner-highlight),
+      inset -1px -1px 0 var(--bevel-inner-shadow);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition:
+      border-color var(--transition-fast),
+      background-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  .theme-toggle:hover {
+    background: var(--surface-3);
+  }
+
+  .theme-toggle:active {
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-inner-shadow),
+      inset -1px -1px 0 var(--bevel-inner-highlight);
+  }
+
+  .theme-toggle-icon {
+    font-size: 14px;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+</style>

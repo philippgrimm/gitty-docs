@@ -71,15 +71,15 @@ const Tag = href ? 'a' : 'button';
     background-color: var(--surface-1);
     color: var(--text-primary);
     border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
-    box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #404040;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
+    box-shadow: inset 1px 1px 0px var(--bevel-inner-highlight), inset -1px -1px 0px var(--bevel-inner-shadow);
   }
   .retro-btn--primary:hover {
     background-color: var(--surface-2);
   }
   .retro-btn--primary:active {
-    border-color: #808080 #ffffff #ffffff #808080;
-    box-shadow: inset 1px 1px 0px #404040, inset -1px -1px 0px #dfdfdf;
+    border-color: var(--bevel-shadow) var(--bevel-highlight) var(--bevel-highlight) var(--bevel-shadow);
+    box-shadow: inset 1px 1px 0px var(--bevel-inner-shadow), inset -1px -1px 0px var(--bevel-inner-highlight);
   }
 
   /* Ghost variant — flat, accent-colored, subtle border */

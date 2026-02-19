@@ -27,11 +27,11 @@ const { key } = Astro.props;
     color: var(--text-primary);
     background-color: var(--surface-2);
     border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+    border-color: var(--bevel-highlight) var(--bevel-shadow) var(--bevel-shadow) var(--bevel-highlight);
     border-radius: 3px;
     box-shadow:
-      inset 1px 1px 0px #dfdfdf,
-      inset -1px -1px 0px #404040,
+      inset 1px 1px 0px var(--bevel-inner-highlight),
+      inset -1px -1px 0px var(--bevel-inner-shadow),
       0 2px 0 rgba(0, 0, 0, 0.2);
     user-select: none;
     white-space: nowrap;

@@ -3,10 +3,12 @@
  * Screenshot — CRT monitor bezel frame for screenshots
  *
  * Wraps an image in a retro CRT-style bezel with inset glow.
+ * Supports theme-aware image swapping via darkSrc prop.
  */
 
 interface Props {
   src: string;
+  darkSrc?: string;
   alt: string;
   caption?: string;
   class?: string;
@@ -16,6 +18,7 @@ interface Props {
 
 const {
   src,
+  darkSrc,
   alt,
   caption,
   class: className = '',
@@ -26,15 +29,38 @@ const {
 
 <figure class:list={['screenshot', className]}>
   <div class="screenshot__bezel">
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      class="screenshot__img"
-    />
+    {darkSrc ? (
+      <>
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          class="screenshot__img screenshot__img--light"
+        />
+        <img
+          src={darkSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          class="screenshot__img screenshot__img--dark"
+        />
+      </>
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        class="screenshot__img"
+      />
+    )}
   </div>
   {caption && (
     <figcaption class="screenshot__caption">{caption}</figcaption>
@@ -62,6 +88,23 @@ const {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* Theme-aware image swap */
+  .screenshot__img--dark {
+    display: none;
+  }
+
+  html[data-theme='dark'] .screenshot__img--light {
+    display: none;
+  }
+
+  html[data-theme='dark'] .screenshot__img--dark {
+    display: block;
+  }
+
+  html[data-theme='dark'] .screenshot__bezel {
+    border-color: #45475a #181825 #181825 #45475a;
   }
 
   .screenshot__caption {
