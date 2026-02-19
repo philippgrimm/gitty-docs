@@ -3,7 +3,26 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import Logo from '../components/Logo.astro';
 import RetroButton from '../components/RetroButton.astro';
 import Screenshot from '../components/Screenshot.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ShortcutRow from '../components/ShortcutRow.astro';
 const base = import.meta.env.BASE_URL;
+
+// Fetch latest release info at build time
+let releaseVersion = '';
+let releaseDate = '';
+let releaseUrl = 'https://github.com/philippgrimm/gitty/releases/latest';
+try {
+  const res = await fetch('https://api.github.com/repos/philippgrimm/gitty/releases/latest');
+  if (res.ok) {
+    const data = await res.json();
+    releaseVersion = data.tag_name || '';
+    releaseDate = data.published_at ? new Date(data.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+    releaseUrl = data.html_url || releaseUrl;
+  }
+} catch (e) {
+  // Graceful fallback — no release info available
+}
 ---
 
 <MarketingLayout title="gitty — A macOS Git Client with Soul">
@@ -53,24 +72,268 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <section id="features" class="py-16 px-4 max-w-6xl mx-auto">
-      <p class="text-[var(--text-secondary)] font-display text-lg">Features section coming soon</p>
+    <section id="features" class="features-section">
+      <div class="py-16 px-4 max-w-6xl mx-auto">
+        <SectionHeader
+          title="FEATURES"
+          subtitle="Everything you need to manage your Git workflow, beautifully crafted for macOS."
+        />
+
+        <div class="features-grid">
+          <FeatureCard
+            title="Line-Level Staging"
+            description="Stage individual lines, hunks, or entire files. Precision control over what goes into your commits."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- File with lines selected -->
+              <rect x="3" y="2" width="14" height="2" />
+              <rect x="3" y="2" width="2" height="20" />
+              <rect x="3" y="20" width="14" height="2" />
+              <rect x="15" y="2" width="2" height="20" />
+              <rect x="6" y="6" width="8" height="2" />
+              <rect x="6" y="10" width="10" height="2" fill="var(--accent)" opacity="0.9" />
+              <rect x="6" y="14" width="6" height="2" fill="var(--accent)" opacity="0.9" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Smart Commits"
+            description="Conventional commit templates, branch-based prefill, amend mode, and commit history cycling."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Commit node -->
+              <rect x="2" y="11" width="7" height="2" />
+              <rect x="15" y="11" width="7" height="2" />
+              <rect x="8" y="8" width="2" height="2" />
+              <rect x="14" y="8" width="2" height="2" />
+              <rect x="8" y="14" width="2" height="2" />
+              <rect x="14" y="14" width="2" height="2" />
+              <rect x="10" y="6" width="4" height="12" />
+              <rect x="8" y="6" width="8" height="2" />
+              <rect x="8" y="16" width="8" height="2" />
+              <!-- Checkmark -->
+              <rect x="10" y="10" width="2" height="4" fill="var(--surface-0)" />
+              <rect x="12" y="12" width="2" height="2" fill="var(--surface-0)" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Visual Diffs"
+            description="Unified or split view with syntax highlighting for 25+ languages. Image diffs built-in."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Split view indicator -->
+              <rect x="2" y="2" width="9" height="20" opacity="0.4" />
+              <rect x="13" y="2" width="9" height="20" opacity="0.4" />
+              <rect x="11" y="2" width="2" height="20" />
+              <!-- Left lines -->
+              <rect x="4" y="6" width="5" height="1" fill="var(--accent)" />
+              <rect x="4" y="9" width="3" height="1" />
+              <rect x="4" y="12" width="5" height="1" />
+              <rect x="4" y="15" width="4" height="1" fill="#c0392b" opacity="0.7" />
+              <!-- Right lines -->
+              <rect x="15" y="6" width="5" height="1" fill="var(--accent)" />
+              <rect x="15" y="9" width="4" height="1" />
+              <rect x="15" y="12" width="5" height="1" />
+              <rect x="15" y="15" width="5" height="1" fill="#27ae60" opacity="0.8" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Branch Management"
+            description="Switch branches with auto-stash. Create, merge, and delete branches without leaving the app."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Branch tree -->
+              <rect x="7" y="2" width="2" height="20" />
+              <rect x="7" y="8" width="8" height="2" />
+              <rect x="15" y="8" width="2" height="6" />
+              <!-- Nodes -->
+              <rect x="5" y="4" width="4" height="4" />
+              <rect x="5" y="18" width="4" height="4" />
+              <rect x="13" y="8" width="4" height="4" />
+              <rect x="13" y="14" width="4" height="4" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Interactive Rebase"
+            description="Drag-and-drop commit reordering. Pick, squash, fixup, or drop with visual feedback."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Stacked commits with reorder arrows -->
+              <rect x="4" y="4" width="16" height="3" />
+              <rect x="4" y="10" width="16" height="3" fill="var(--accent)" />
+              <rect x="4" y="17" width="16" height="3" />
+              <!-- Up arrow -->
+              <rect x="19" y="11" width="2" height="5" />
+              <rect x="17" y="13" width="2" height="2" />
+              <rect x="21" y="13" width="2" height="2" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Conflict Resolution"
+            description="Three-way merge view: ours, theirs, base. Accept, edit, or combine — all in-app."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Three panels -->
+              <rect x="2" y="3" width="5" height="18" opacity="0.5" />
+              <rect x="9" y="3" width="6" height="18" fill="var(--accent)" opacity="0.7" />
+              <rect x="17" y="3" width="5" height="18" opacity="0.5" />
+              <!-- Merge lines -->
+              <rect x="7" y="9" width="2" height="2" />
+              <rect x="15" y="9" width="2" height="2" />
+              <rect x="7" y="13" width="2" height="2" />
+              <rect x="15" y="13" width="2" height="2" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Command Palette"
+            description="28 commands at your fingertips. ⌘K to open, fuzzy search to find."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Keyboard shortcut hint + palette -->
+              <rect x="2" y="5" width="20" height="14" opacity="0.3" />
+              <rect x="2" y="5" width="20" height="2" />
+              <rect x="2" y="5" width="2" height="14" />
+              <rect x="20" y="5" width="2" height="14" />
+              <rect x="2" y="17" width="20" height="2" />
+              <!-- ⌘ key dots -->
+              <rect x="5" y="9" width="2" height="2" fill="var(--accent)" />
+              <rect x="5" y="13" width="2" height="2" fill="var(--accent)" />
+              <rect x="9" y="9" width="2" height="6" fill="var(--accent)" />
+              <!-- K letter -->
+              <rect x="13" y="9" width="2" height="6" />
+              <rect x="15" y="9" width="2" height="2" />
+              <rect x="15" y="13" width="2" height="2" />
+              <rect x="17" y="8" width="2" height="2" />
+              <rect x="17" y="14" width="2" height="2" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Git Blame & Search"
+            description="Line-by-line authorship. Search commits, files, and content across your repo."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- Magnifier -->
+              <rect x="3" y="3" width="12" height="2" />
+              <rect x="3" y="3" width="2" height="12" />
+              <rect x="3" y="13" width="12" height="2" />
+              <rect x="13" y="3" width="2" height="12" />
+              <!-- Search line in glass -->
+              <rect x="6" y="7" width="6" height="2" fill="var(--accent)" />
+              <!-- Handle -->
+              <rect x="14" y="14" width="2" height="2" />
+              <rect x="16" y="16" width="2" height="2" />
+              <rect x="18" y="18" width="2" height="2" />
+              <rect x="20" y="20" width="2" height="2" />
+            </svg>
+          </FeatureCard>
+
+          <FeatureCard
+            title="Native macOS"
+            description="Desktop notifications, menu bar integration, and keyboard shortcuts that feel right at home."
+          >
+            <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <!-- macOS window chrome -->
+              <rect x="2" y="4" width="20" height="16" opacity="0.35" />
+              <rect x="2" y="4" width="20" height="3" />
+              <!-- Traffic lights -->
+              <rect x="4" y="5" width="2" height="1" fill="#e74c3c" />
+              <rect x="7" y="5" width="2" height="1" fill="#f39c12" />
+              <rect x="10" y="5" width="2" height="1" fill="#27ae60" />
+              <!-- Window content lines -->
+              <rect x="4" y="10" width="7" height="2" fill="var(--accent)" opacity="0.8" />
+              <rect x="4" y="14" width="12" height="1" opacity="0.5" />
+              <rect x="4" y="16" width="9" height="1" opacity="0.5" />
+              <!-- Sidebar -->
+              <rect x="2" y="7" width="2" height="13" opacity="0.6" />
+            </svg>
+          </FeatureCard>
+        </div>
+      </div>
     </section>
 
     <section id="shortcuts" class="py-16 px-4 bg-[var(--surface-1)]">
       <div class="max-w-6xl mx-auto">
-        <p class="text-[var(--text-secondary)] font-display text-lg">Shortcuts section coming soon</p>
+        <SectionHeader
+          title="KEYBOARD SHORTCUTS"
+          subtitle="Power users welcome. Every action at your fingertips."
+        />
+
+        <div class="shortcuts-grid">
+          <div class="shortcuts-col">
+            <ShortcutRow keys={["⌘", "↵"]} description="Commit" />
+            <ShortcutRow keys={["⌘", "⇧", "↵"]} description="Commit & Push" />
+            <ShortcutRow keys={["⌘", "⇧", "K"]} description="Stage All" />
+            <ShortcutRow keys={["⌘", "⇧", "U"]} description="Unstage All" />
+            <ShortcutRow keys={["⌘", "⇧", "S"]} description="Stash All" />
+            <ShortcutRow keys={["⌘", "A"]} description="Select All Files" />
+            <ShortcutRow keys={["⌘", "K"]} description="Command Palette" />
+            <ShortcutRow keys={["⌘", "⇧", "P"]} description="Command Palette (alt)" />
+          </div>
+          <div class="shortcuts-col">
+            <ShortcutRow keys={["⌘", "Z"]} description="Undo Last Commit" />
+            <ShortcutRow keys={["⌘", "/"]} description="Keyboard Shortcuts Help" />
+            <ShortcutRow keys={["⌘", "H"]} description="Toggle History Panel" />
+            <ShortcutRow keys={["⌘", "F"]} description="Search" />
+            <ShortcutRow keys={["⌘", "L"]} description="Focus Commit Message" />
+            <ShortcutRow keys={["⌘", "B"]} description="Toggle Sidebar" />
+            <ShortcutRow keys={["Esc"]} description="Close Modals" />
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="screenshots" class="py-16 px-4 max-w-6xl mx-auto">
-      <p class="text-[var(--text-secondary)] font-display text-lg">Screenshots gallery coming soon</p>
-    </section>
   </main>
 
-  <footer class="py-16 px-4 bg-[var(--surface-2)]">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-[var(--text-secondary)] font-display text-lg">Download CTA coming soon</p>
+  <footer id="download" class="footer-section bg-[var(--surface-2)]">
+    <div class="footer-inner max-w-6xl mx-auto">
+
+      <SectionHeader
+        title="DOWNLOAD"
+        subtitle="One app. Every repo. Beautifully native on macOS."
+      />
+
+      {releaseVersion ? (
+        <div class="footer-release-meta">
+          <span class="footer-version-badge">{releaseVersion}</span>
+          {releaseDate && (
+            <span class="footer-release-date">Released {releaseDate}</span>
+          )}
+        </div>
+      ) : null}
+
+      <div class="footer-cta">
+        {releaseVersion ? (
+          <RetroButton href={releaseUrl} size="lg">⬇ Download gitty for macOS</RetroButton>
+        ) : (
+          <div class="footer-coming-soon">
+            <p class="footer-coming-text">Not yet released —</p>
+            <RetroButton href="https://github.com/philippgrimm/gitty" variant="ghost" size="md">★ Star us on GitHub</RetroButton>
+          </div>
+        )}
+      </div>
+
+      <nav class="footer-links" aria-label="Footer links">
+        <RetroButton href="https://github.com/philippgrimm/gitty" variant="ghost" size="sm">
+          View on GitHub
+        </RetroButton>
+        <span class="footer-links-sep" aria-hidden="true">·</span>
+        <RetroButton href={`${base}getting-started/`} variant="ghost" size="sm">
+          Documentation
+        </RetroButton>
+        <span class="footer-links-sep" aria-hidden="true">·</span>
+        <RetroButton href="#shortcuts" variant="ghost" size="sm">
+          Keyboard Shortcuts
+        </RetroButton>
+      </nav>
+
+      <p class="footer-copyright">© 2026 Gitty. Built with ❤ and PHP.</p>
+
     </div>
   </footer>
 </MarketingLayout>
@@ -177,10 +440,151 @@ const base = import.meta.env.BASE_URL;
     max-width: 52rem;
   }
 
+  /* ── Features Section ────────────────────────────────────── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Shortcuts Section ───────────────────────────────────── */
+  .shortcuts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2rem;
+  }
+
+  .shortcuts-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .shortcuts-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+    }
+  }
+
   /* ── Responsive ───────────────────────────────────────────── */
   @media (min-width: 1024px) {
     .hero-section {
       padding: 7rem 2rem 8rem;
+    }
+  }
+
+  /* ── Download / Footer Section ───────────────────────────── */
+  .footer-section {
+    padding: 5rem 1rem 4rem;
+    border-top: 2px solid var(--border-strong);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  /* Release meta — version badge + date */
+  .footer-release-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-version-badge {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    background: var(--accent-muted);
+    border: 1px solid rgba(64, 64, 176, 0.35);
+    padding: 0.25rem 0.625rem;
+  }
+
+  .footer-release-date {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA area — primary download button or coming-soon fallback */
+  .footer-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-coming-text {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Secondary links row */
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .footer-links-sep {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  /* Copyright line */
+  .footer-copyright {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    opacity: 0.65;
+    margin: 0;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed rgba(64, 64, 176, 0.2);
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .footer-section {
+      padding: 6rem 2rem 5rem;
     }
   }
 </style>
