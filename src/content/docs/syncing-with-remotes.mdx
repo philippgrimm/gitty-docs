@@ -3,4 +3,48 @@ title: Syncing with Remotes
 description: Push, pull, fetch, and sync with remote repositories
 ---
 
-Content coming soon.
+The sync buttons in gitty's toolbar handle all communication with your remote. Push, pull, and fetch are one click away, and auto-fetch keeps your view of the remote current without any manual effort.
+
+## Pushing Changes
+
+Click the `Push` button in the toolbar to send your local commits to the remote. The button shows a badge with the number of commits you're ahead, so you always know what's queued up before you push.
+
+When the push completes, gitty fires a native macOS notification: "Pushed N commit(s) to branch". The ahead count resets to zero. If you want to commit and push in a single step, use `Cmd+Shift+Enter` from the commit panel.
+
+## Pulling Changes
+
+Click `Pull` to bring remote commits into your local branch. gitty runs the pull and then refreshes your staging area, history, and branch list automatically, so everything stays in sync.
+
+If the pull results in conflicts, gitty shows an error listing the conflicted files. You'll need to resolve those manually before the pull can complete. A native notification confirms success once the pull finishes cleanly.
+
+## Fetching
+
+`Fetch` downloads the latest state of the remote without touching your working directory. It updates remote tracking branches so gitty can show you an accurate ahead/behind count, but it won't merge anything or change any local files.
+
+If you have multiple remotes configured, use `Fetch All` to pull updates from all of them at once. This runs `git fetch --all` under the hood.
+
+## Auto-Fetch
+
+gitty fetches in the background on a configurable interval, defaulting to 3 minutes. You don't need to remember to fetch manually. The toolbar shows a small indicator with the last fetch time, like "2 minutes ago", and a spinner appears while a fetch is in progress.
+
+The minimum interval is 60 seconds. Setting the interval to 0 disables auto-fetch entirely. You can adjust this in gitty's settings.
+
+## Force Push with Lease
+
+After rebasing or amending commits, a regular push will be rejected because your local history has diverged from the remote. Use `Force Push with Lease` from the toolbar (or the Command Palette) to overwrite the remote branch.
+
+`--force-with-lease` is safer than a plain `--force`. It checks that the remote branch hasn't moved since you last fetched. If someone else pushed commits you don't have locally, gitty blocks the force push and shows an error. This prevents you from accidentally overwriting someone else's work.
+
+Only use force push on branches where you're the sole author, or where your team has agreed it's safe, like a personal feature branch after a rebase.
+
+## Ahead/Behind Counter
+
+The toolbar shows two numbers next to the sync buttons: how many commits you're ahead of the remote, and how many you're behind. "Ahead 3" means you have 3 local commits not yet pushed. "Behind 2" means the remote has 2 commits you haven't pulled.
+
+Both numbers can be non-zero at the same time, which means your branch has diverged. In that case, you'll need to pull (and resolve any conflicts) before you can push, or use force push with lease if you're intentionally rewriting history.
+
+## Detached HEAD
+
+When you check out a specific commit rather than a branch, git puts you in a detached HEAD state. There's no branch to push to or pull from, so gitty disables the push and pull buttons and shows an error if you try: "Cannot push/pull in detached HEAD state."
+
+To get back to a normal state, switch to an existing branch using the branch dropdown in the toolbar, or create a new branch from your current position. Once you're on a branch, push and pull work as usual.

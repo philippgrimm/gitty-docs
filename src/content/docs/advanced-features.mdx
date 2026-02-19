@@ -3,4 +3,78 @@ title: Advanced Features
 description: Git blame, search, rebase, command palette, and more
 ---
 
-Content coming soon.
+This guide covers the deeper features of gitty: history inspection, search, commit manipulation, and app-wide controls. These build on the basics covered in Getting Started.
+
+## Commit History
+
+The history panel shows your full commit log with a visual graph. Each commit appears as a row with its message, author, date, and SHA. The graph on the left uses colored lanes to show branch and merge structure at a glance.
+
+Click any commit to open its details in the diff viewer. You'll see the full commit message, changed files, and a diff for each file.
+
+History loads 100 commits at a time. Scroll to the bottom and click **Load More** to fetch the next batch.
+
+## Git Blame
+
+While viewing a file in the diff viewer, click the **Blame** button to switch to blame view. Each line shows the commit SHA, author name, and date that last touched it.
+
+Click any SHA in the blame view to jump straight to that commit in the history panel. The history panel opens automatically and selects the commit, so you can see the full context of that change.
+
+## Search
+
+The search panel supports three modes, selectable by tabs:
+
+- **Commit messages** — searches commit messages using `git log --grep`. Good for finding when a feature was added or a bug was fixed.
+- **File names** — searches tracked file names. Useful when you know part of a filename but not its location.
+- **Content** — uses pickaxe search (`git log -S`) to find commits that added or removed a specific string. This is the most powerful mode for tracking down when a line of code appeared or disappeared.
+
+All three modes require at least 3 characters before searching. Results appear inline as you type.
+
+## Reset
+
+To reset your branch to an earlier commit, click the reset icon next to any commit in the history panel. A modal appears with three options:
+
+- **Soft** — moves HEAD back but keeps all changes staged, ready to recommit.
+- **Mixed** — moves HEAD back and unstages the changes, leaving them in your working directory.
+- **Hard** — moves HEAD back and discards all changes permanently.
+
+Hard reset requires you to type `DISCARD` in a confirmation field before it runs. If the target commit has already been pushed to a remote, gitty shows a warning that you'll need to force push afterward.
+
+## Revert
+
+Revert creates a new commit that undoes the changes from an earlier one. It's the safe alternative to reset when you've already pushed. Click the revert icon next to any commit in the history panel to trigger it.
+
+If the revert produces conflicts, the operation stops and gitty shows which files need attention. Resolve the conflicts manually, then stage and commit as usual.
+
+## Cherry-Pick
+
+Cherry-pick applies a commit from another branch onto your current branch. Click the cherry-pick icon next to any commit in the history panel. gitty runs the operation and the commit appears at the tip of your current branch.
+
+Like revert, cherry-pick can produce conflicts if the changes don't apply cleanly. gitty will show the conflicted files so you know what to fix.
+
+## Command Palette
+
+Press `Cmd+K` to open the command palette. It gives you access to all 28 commands in gitty without memorizing shortcuts.
+
+Start typing to filter. The search is fuzzy and matches both command labels and keywords, so typing "push" will surface "Force Push" and "Commit & Push" alongside the plain push command.
+
+Some commands need extra input. When you select **Create Branch**, for example, the palette switches to an input field where you type the branch name before confirming. Invalid input (like an empty branch name) shows an inline error.
+
+Commands that aren't available in the current context appear dimmed. Commit-related commands disable when there's nothing staged. Most commands disable entirely when no repository is open.
+
+## Settings
+
+Open settings from the command palette or the gear icon. Three options live here:
+
+**External editor** — gitty auto-detects VS Code, Cursor, Sublime Text, PhpStorm, and Zed. Pick whichever you use and the "Open in Editor" command will launch files directly at the right line.
+
+**Auto-fetch interval** — gitty fetches from remotes in the background on a timer. The default is every 3 minutes. Set it to `0` to turn auto-fetch off entirely.
+
+**Theme** — choose light, dark, or system. System follows your macOS appearance setting automatically.
+
+## Multi-Repository Management
+
+gitty can hold multiple repositories in memory and lets you switch between them without reopening anything.
+
+Click the folder icon in the toolbar or press `Cmd+O` to open a new repository. Select any folder that contains a `.git` directory and it loads into the workspace.
+
+The repo switcher dropdown in the top-left corner lists your last 20 opened repositories, sorted by when you last used them. Your current repo is highlighted at the top. Click any entry to switch instantly.

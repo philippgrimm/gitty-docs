@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
 
 interface Props {
   title: string;
@@ -23,6 +24,7 @@ const base = import.meta.env.BASE_URL;
     />
   </head>
   <body class="min-h-screen bg-[var(--surface-0)] text-[var(--text-primary)] font-sans retro-paper crt-scanlines">
+    <Navbar />
     <slot />
   </body>
 </html>

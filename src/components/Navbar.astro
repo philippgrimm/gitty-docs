@@ -1,0 +1,285 @@
+---
+/**
+ * Navbar — Sticky marketing navigation bar
+ *
+ * Win95-style window chrome header with:
+ * - Logo (size="sm"), anchor nav links, Download RetroButton
+ * - Mobile hamburger menu (JS toggle via <script>)
+ * - Sticky top positioning with .window-chrome gradient background
+ */
+
+import Logo from './Logo.astro';
+import RetroButton from './RetroButton.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<header class="navbar" role="banner">
+  <nav class="navbar-inner" aria-label="Main navigation">
+    <!-- Logo -->
+    <a href={base} class="navbar-logo-link" aria-label="gitty — back to home">
+      <Logo size="sm" />
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="navbar-links" role="list">
+      <li><a href="#features" class="navbar-link">Features</a></li>
+      <li><a href="#shortcuts" class="navbar-link">Shortcuts</a></li>
+      <li><a href={`${base}getting-started/`} class="navbar-link">Docs</a></li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <div class="navbar-cta">
+      <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="sm">
+        ⬇ Download
+      </RetroButton>
+    </div>
+
+    <!-- Mobile hamburger button -->
+    <button
+      class="navbar-hamburger"
+      id="navbar-hamburger"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="navbar-mobile-menu"
+      type="button"
+    >
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile dropdown menu -->
+  <div class="navbar-mobile-menu" id="navbar-mobile-menu" aria-hidden="true">
+    <ul class="mobile-links" role="list">
+      <li><a href="#features" class="mobile-link">Features</a></li>
+      <li><a href="#shortcuts" class="mobile-link">Shortcuts</a></li>
+      <li><a href={`${base}getting-started/`} class="mobile-link">Docs</a></li>
+    </ul>
+    <div class="mobile-cta">
+      <RetroButton href="https://github.com/philippgrimm/gitty/releases/latest" size="sm">
+        ⬇ Download
+      </RetroButton>
+    </div>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('navbar-hamburger');
+  const mobileMenu = document.getElementById('navbar-mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(isOpen));
+      mobileMenu.classList.toggle('navbar-mobile-menu--open', !isOpen);
+      hamburger.classList.toggle('navbar-hamburger--open', !isOpen);
+    });
+
+    // Close menu when a mobile link is clicked
+    mobileMenu.querySelectorAll('.mobile-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.classList.remove('navbar-mobile-menu--open');
+        hamburger.classList.remove('navbar-hamburger--open');
+      });
+    });
+  }
+</script>
+
+<style>
+  /* ── Navbar shell — sticky window chrome ────────────────── */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-1) 100%);
+    border-bottom: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 0 1px 0 rgba(64, 64, 176, 0.08), 0 2px 6px rgba(44, 48, 64, 0.08);
+  }
+
+  /* ── Inner layout — flex row ─────────────────────────────── */
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+  }
+
+  /* ── Logo link — no underline, crisp click target ────────── */
+  .navbar-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    /* subtle hover: slight opacity dip */
+    transition: opacity var(--transition-fast);
+  }
+  .navbar-logo-link:hover {
+    opacity: 0.8;
+  }
+
+  /* ── Nav links list — desktop ────────────────────────────── */
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+
+  .navbar-link {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .navbar-link:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-3);
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+  .navbar-link:active {
+    background-color: var(--surface-2);
+    border-color: #ffffff #808080 #808080 #ffffff;
+  }
+
+  /* ── CTA area — right-aligned ────────────────────────────── */
+  .navbar-cta {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Hamburger button — mobile only ──────────────────────── */
+  .navbar-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+  .navbar-hamburger:hover {
+    background-color: var(--surface-3);
+  }
+  .navbar-hamburger:active,
+  .navbar-hamburger--open {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background-color: var(--surface-2);
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 16px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    transform-origin: center;
+  }
+
+  /* Animate bars into X when open */
+  .navbar-hamburger--open .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .navbar-hamburger--open .hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .navbar-hamburger--open .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ── Mobile menu dropdown ────────────────────────────────── */
+  .navbar-mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface-1);
+    border-top: 1px solid var(--border-strong);
+    padding: 0.5rem 1rem 1rem;
+    overflow: hidden;
+  }
+
+  .navbar-mobile-menu--open {
+    display: flex;
+  }
+
+  .mobile-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: color var(--transition-fast);
+  }
+  .mobile-link:hover {
+    color: var(--accent);
+  }
+
+  .mobile-cta {
+    margin-top: 1rem;
+    display: flex;
+  }
+
+  /* ── Responsive breakpoints ──────────────────────────────── */
+  @media (max-width: 767px) {
+    .navbar-links,
+    .navbar-cta {
+      display: none;
+    }
+
+    .navbar-hamburger {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .navbar-inner {
+      padding: 0.625rem 1.5rem;
+    }
+
+    .navbar-hamburger {
+      display: none;
+    }
+
+    .navbar-mobile-menu {
+      display: none !important;
+    }
+  }
+</style>

@@ -13,6 +13,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Gitty Docs',
+      logo: {
+        src: './src/assets/logo.svg',
+        alt: 'gitty — Git, handcrafted for macOS',
+        href: '/gitty-docs/',
+      },
       customCss: ['./src/styles/global.css'],
       head: [
         {
