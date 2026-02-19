@@ -10,6 +10,8 @@ interface Props {
   alt: string;
   caption?: string;
   class?: string;
+  width?: number;
+  height?: number;
 }
 
 const {
@@ -17,6 +19,8 @@ const {
   alt,
   caption,
   class: className = '',
+  width = 1280,
+  height = 800,
 } = Astro.props;
 ---
 
@@ -25,6 +29,8 @@ const {
     <img
       src={src}
       alt={alt}
+      width={width}
+      height={height}
       loading="lazy"
       decoding="async"
       class="screenshot__img"

@@ -13,7 +13,7 @@ Click any commit to open its details in the diff viewer. You'll see the full com
 
 History loads 100 commits at a time. Scroll to the bottom and click **Load More** to fetch the next batch.
 
-![Commit history with visual graph lanes](/gitty-docs/screenshots/screenshot-06-history.svg)
+<img src={`${import.meta.env.BASE_URL}screenshots/screenshot-06-history.svg`} alt="Commit history with visual graph lanes" width="1280" height="800" loading="lazy" />
 
 ## Git Blame
 
@@ -63,7 +63,7 @@ Some commands need extra input. When you select **Create Branch**, for example, 
 
 Commands that aren't available in the current context appear dimmed. Commit-related commands disable when there's nothing staged. Most commands disable entirely when no repository is open.
 
-![Command palette with fuzzy search](/gitty-docs/screenshots/screenshot-07-command-palette.svg)
+<img src={`${import.meta.env.BASE_URL}screenshots/screenshot-07-command-palette.svg`} alt="Command palette with fuzzy search" width="1280" height="800" loading="lazy" />
 
 ## Settings
 
@@ -73,7 +73,7 @@ Open settings from the command palette or the gear icon. Three options live here
 
 **Auto-fetch interval** — gitty fetches from remotes in the background on a timer. The default is every 3 minutes. Set it to `0` to turn auto-fetch off entirely.
 
-**Theme** — choose light, dark, or system. System follows your macOS appearance setting automatically.
+**Theme** — gitty uses a warm retro light theme inspired by classic computing aesthetics.
 
 ## Multi-Repository Management
 
